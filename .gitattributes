@@ -1,0 +1,2 @@
+# Check out with LF everywhere, Windows included, to match rustfmt.toml.
+* text=auto eol=lf
