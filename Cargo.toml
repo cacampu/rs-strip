@@ -1,0 +1,37 @@
+[package]
+name = "rs-strip"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT OR Apache-2.0"
+description = "Strip tests, doc comments and comments from a single Rust source file, and optionally minify it, for submission to a competitive programming judge."
+repository = "https://github.com/cacampu/rs-strip"
+readme = "README.md"
+keywords = ["competitive", "strip", "minify", "comments", "cli"]
+categories = ["command-line-utilities", "development-tools"]
+
+[features]
+default = ["cli"]
+# The command-line front end. Turn it off to use the crate as a library without
+# pulling in clap.
+cli = ["dep:clap"]
+
+[[bin]]
+name = "rs-strip"
+required-features = ["cli"]
+
+[dependencies]
+anyhow = "1.0.72"
+cfg-expr = "0.20"
+clap = { version = "4.5.20", features = ["derive"], optional = true }
+fixedbitset = "0.5"
+if_chain = "1.0.2"
+itertools = "0.15"
+# `span-locations` gives spans a line and column. Every transformation here
+# relies on it to find the text it rewrites.
+proc-macro2 = { version = "1.0.66", features = ["span-locations"] }
+quote = "1.0.32"
+syn = { version = "3", features = ["full", "visit"] }
+
+[dev-dependencies]
+pretty_assertions = "1.4.0"
